@@ -6,7 +6,16 @@ public class PingCheck {
 	private long ping;
 	private long start;
 	private long end;
+	private int responseCode;
 	
+	public int getResponseCode() {
+		return responseCode;
+	}
+
+	public void setResponseCode(int responseCode) {
+		this.responseCode = responseCode;
+	}
+
 	public long getStart() {
 		return start;
 	}
@@ -50,11 +59,16 @@ public class PingCheck {
 	public String toString() {
 		long totalPing = end - start;
 		String timeMessage = "";
+		String responseCodeMessage = "";
 		
 		if(totalPing > 0) {
 			timeMessage = " - " + totalPing + " ms";
 		}
 		
-		return url + timeMessage;
+		if(responseCode > 0) {
+			responseCodeMessage = " [" + responseCode + "] ";
+		}
+		
+		return url + responseCodeMessage + timeMessage;
 	}
 }

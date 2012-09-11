@@ -73,8 +73,8 @@ public class MainActivity extends Activity {
 				try {
 					pingCheck.setStart(System.currentTimeMillis());
 					
-					HttpResponse execute = client.execute(httpGet);
-					InputStream content = execute.getEntity().getContent();
+					HttpResponse response = client.execute(httpGet);
+					InputStream content = response.getEntity().getContent();
 					
 					BufferedReader buffer = new BufferedReader(new InputStreamReader(content));
 					String s = "";
@@ -82,6 +82,8 @@ public class MainActivity extends Activity {
 					while ((s = buffer.readLine()) != null) {
 						sb.append(s);
 					}
+					
+					pingCheck.setResponseCode(response.getStatusLine().getStatusCode());
 					
 					pingCheck.setEnd(System.currentTimeMillis());
 					
@@ -107,7 +109,7 @@ public class MainActivity extends Activity {
 	public void onClick(View view) {
     	switch(view.getId()) {
     	case R.id.add:
-    		Intent pingCheckIntent = new Intent(this,PingCheckActivity.class);
+    		Intent pingCheckIntent = new Intent(this,CreateActivity.class);
     		this.startActivity(pingCheckIntent);
     		
     		break;

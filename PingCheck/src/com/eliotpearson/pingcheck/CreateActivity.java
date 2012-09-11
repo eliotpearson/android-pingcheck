@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class PingCheckActivity extends Activity {
+public class CreateActivity extends Activity {
 	private PingCheckDao dao;
 	private TextView editTextView;
 
